@@ -17,16 +17,23 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-        source-url: https://nuget.pkg.github.com/Ant0ine64/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GPR_TOKEN}}
+#        source-url: https://nuget.pkg.github.com/Ant0ine64/index.json
+#      env:
+#        NUGET_AUTH_TOKEN: ${{secrets.GPR_TOKEN}}
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Create the package
-      run: dotnet pack --configuration Release ConsoleApp1
-    - name: Publish the package to GPR
-      run: dotnet nuget push ConsoleApp1/bin/Release/*.nupkg
+#    - name: Create the package
+#      run: dotnet pack --configuration Release ConsoleApp1
+#    - name: Publish the package to GPR
+#      run: dotnet nuget push ConsoleApp1/bin/Release/*.nupkg
+    - name: Publish
+      run: dotnet publish
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.3.1
+      with:
+        name: hellowlrd
+        path: /home/runner/work/Playground/Playground/src/ConsoleApp1/bin/Release/net6.0/publish
