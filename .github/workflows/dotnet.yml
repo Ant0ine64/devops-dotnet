@@ -29,7 +29,7 @@ jobs:
       uses: actions/upload-artifact@v2.3.1
       with:
         name: hello-world_linux-x64
-        path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/publish/
+        path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/linux-x64/publish/
         
   build-win:
 
@@ -53,4 +53,4 @@ jobs:
         uses: actions/upload-artifact@v2.3.1
         with:
           name: hello-world_win-x64
-          path: D:\a\devops-dotnet\devops-dotnet\ConsoleApp1\bin\Debug\net6.0\publish\
+          path: D:\a\devops-dotnet\devops-dotnet\ConsoleApp1\bin\Debug\net6.0\win-x64\publish\
