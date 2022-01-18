@@ -55,6 +55,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: hello-world_win-x64
+      - name: checkout
+        uses: actions/checkout@v2
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
