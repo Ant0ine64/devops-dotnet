@@ -47,16 +47,6 @@ jobs:
       - build
         
     steps:
-      - name: Get artifact linux
-        uses: actions/download-artifact@v2
-        with:
-          name: hello-world_linux-x64
-      - name: Give a diferent name to linux elf executable
-        run: mv ConsoleApp1 ConsoleApp1.elf
-      - name: Get artifact win
-        uses: actions/download-artifact@v2
-        with:
-          name: hello-world_win-x64
       - name: checkout
         uses: actions/checkout@v2
       - name: Create Release
@@ -70,6 +60,16 @@ jobs:
           draft: false
           prerelease: false
           body_path: CHANGELOG.md
+      - name: Get artifact linux
+        uses: actions/download-artifact@v2
+        with:
+          name: hello-world_linux-x64
+#      - name: Give a diferent name to linux elf executable
+#        run: mv ConsoleApp1 ConsoleApp1.elf
+      - name: Get artifact win
+        uses: actions/download-artifact@v2
+        with:
+          name: hello-world_win-x64
       - name: Upload Release Asset linux
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
