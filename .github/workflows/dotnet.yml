@@ -65,7 +65,7 @@ jobs:
       - name: Download math result for job 2
         uses: actions/download-artifact@v2
         with:
-          name: hello-workd_linux-x64
+          name: hello-world_linux-x64
       - run : ls -l
       - name: Create Release
         id: create_release
