@@ -26,9 +26,11 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish linux64
-      run: dotnet publish --self-contained true -r linux-x64 -p:PublishSingleFile=true
+      run: dotnet publish --self-contained true -r linux-x64 -p:PublishSingleFile=true -c Release
     - name: Publish win64
-      run: dotnet publish --self-contained true -r win-x64 -p:PublishSingleFile=true
+      run: dotnet publish --self-contained true -r win-x64 -p:PublishSingleFile=true -c Release
+    - name: PWD
+      run: pwd && ls -l
     - name: Upload a Build Artifact linux
       uses: actions/upload-artifact@v2.3.1
       with:
@@ -38,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v2.3.1
       with:
         name: hello-world_win-x64
-        path: D:\a\devops-dotnet\devops-dotnet\ConsoleApp1\bin\Debug\net6.0\win-x64\publish\
+        path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/win-x64/publish/
           
   release:
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
