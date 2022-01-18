@@ -17,42 +17,40 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-#        source-url: https://nuget.pkg.github.com/Ant0ine64/index.json
-#      env:
-#        NUGET_AUTH_TOKEN: ${{secrets.GPR_TOKEN}}
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-#    - name: Create the package
-#      run: dotnet pack --configuration Release ConsoleApp1
-#    - name: Publish the package to GPR
-#      run: dotnet nuget push ConsoleApp1/bin/Release/*.nupkg
-  
-  publish-lnx:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Publish
-        run: dotnet publish --self-contained true
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2.3.1
-        with:
-          name: hello-world_linux-x64
-          path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/linux-x64/
-          
-  publish-win:
-    needs: build
-    runs-on: windows-latest
-
-    steps:
     - name: Publish
       run: dotnet publish --self-contained true
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.3.1
       with:
         name: hello-world_linux-x64
-        path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/win-x64/
+        path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/publish/
+        
+  build-win:
+
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+      - name: Publish
+        run: dotnet publish --self-contained true
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: hello-world_win-x64
+          path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/publish/
