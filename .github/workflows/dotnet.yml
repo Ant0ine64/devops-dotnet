@@ -31,11 +31,11 @@ jobs:
 #    - name: Publish the package to GPR
 #      run: dotnet nuget push ConsoleApp1/bin/Release/*.nupkg
   
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
+#  publish:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    
+#    steps:
     - name: Publish linux
       run: dotnet publish --self-contained true -a linux-x64
     - name: Upload a Build Artifact
