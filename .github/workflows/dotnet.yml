@@ -37,7 +37,7 @@ jobs:
     
     steps:
     - name: Publish linux
-      run: dotnet publish --self-contained true --os linux-x64
+      run: dotnet publish --self-contained true --arch linux-x64
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.3.1
       with:
