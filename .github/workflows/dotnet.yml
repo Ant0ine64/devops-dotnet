@@ -17,6 +17,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
+        source-url: https://nuget.pkg.github.com/Ant0ine64/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GPR_TOKEN}}
     - name: Restore dependencies
