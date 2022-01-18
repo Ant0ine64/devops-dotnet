@@ -35,12 +35,12 @@ jobs:
       uses: actions/upload-artifact@v2.3.1
       with:
         name: hello-world_linux-x64
-        path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/linux-x64/publish/
+        path: ConsoleApp1/bin/Release/net6.0/linux-x64/publish/
     - name: Upload a Build Artifact windows
       uses: actions/upload-artifact@v2.3.1
       with:
         name: hello-world_win-x64
-        path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/win-x64/publish/
+        path: ConsoleApp1/bin/Release/net6.0/win-x64/publish/
           
   release:
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
