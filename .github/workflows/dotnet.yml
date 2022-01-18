@@ -27,6 +27,8 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish linux64
       run: dotnet publish --self-contained true -r linux-x64 -p:PublishSingleFile=true -c Release
+    - name: Give a diferent name to linux elf executable
+      run: mv ConsoleApp1/bin/Release/net6.0/linux-x64/publish/ConsoleApp1 ConsoleApp1/bin/Release/net6.0/linux-x64/publish/ConsoleApp1.elf
     - name: Publish win64
       run: dotnet publish --self-contained true -r win-x64 -p:PublishSingleFile=true -c Release
     - name: Upload a Build Artifact linux
@@ -64,8 +66,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: hello-world_linux-x64
-#      - name: Give a diferent name to linux elf executable
-#        run: mv ConsoleApp1 ConsoleApp1.elf
       - name: Get artifact win
         uses: actions/download-artifact@v2
         with:
