@@ -51,6 +51,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: hello-world_linux-x64
+      - name: Give a diferent name to linux elf executable
+        run: mv ConsoleApp1 ConsoleApp1.elf
       - name: Get artifact win
         uses: actions/download-artifact@v2
         with:
@@ -75,7 +77,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ConsoleApp1
+          asset_path: ConsoleApp1.elf
           asset_name: hello-wolrd_linux-x64
           asset_content_type: application/octet-stream
       - name: Upload Release Asset Windows 
