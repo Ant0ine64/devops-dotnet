@@ -56,6 +56,7 @@ jobs:
           path: D:\a\devops-dotnet\devops-dotnet\ConsoleApp1\bin\Debug\net6.0\win-x64\publish\
           
   release:
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     needs: 
       - build
@@ -84,5 +85,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: hello-wolrd_linux-x64
+          asset_path: ConsoleApp1
           asset_name: hello-wolrd_linux-x64
