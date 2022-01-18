@@ -24,7 +24,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish --self-contained true -r linux-x64
+      run: dotnet publish --self-contained true -r linux-x64 -p:PublishSingleFile=true
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.3.1
       with:
@@ -48,7 +48,7 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal
       - name: Publish
-        run: dotnet publish --self-contained true -r win-x64
+        run: dotnet publish --self-contained true -r win-x64 -p:PublishSingleFile=true
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.3.1
         with:
@@ -84,6 +84,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: hello-wolrd_linux-x64.zip
-          asset_name: hello-wolrd_linux-x64.zip
-          asset_content_type: application/zip
+          asset_path: hello-wolrd_linux-x64
+          asset_name: hello-wolrd_linux-x64
