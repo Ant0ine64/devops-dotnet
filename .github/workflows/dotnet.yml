@@ -29,8 +29,6 @@ jobs:
       run: dotnet publish --self-contained true -r linux-x64 -p:PublishSingleFile=true -c Release
     - name: Publish win64
       run: dotnet publish --self-contained true -r win-x64 -p:PublishSingleFile=true -c Release
-    - name: PWD
-      run: pwd && ls -l
     - name: Upload a Build Artifact linux
       uses: actions/upload-artifact@v2.3.1
       with:
@@ -57,7 +55,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: hello-world_win-x64
-      - run : ls -l
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -68,6 +65,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
+          body_path: CHANGELOG.md
       - name: Upload Release Asset linux
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
@@ -86,5 +84,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ConsoleApp1.exe
-          asset_name: hello-world_win-x64
+          asset_name: hello-world_win-x64.exe
           asset_content_type: application/octet-stream
