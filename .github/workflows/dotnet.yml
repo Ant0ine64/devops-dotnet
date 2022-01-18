@@ -17,8 +17,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-    env:
-      NUGET_AUTH_TOKEN: ${{secrets.GPR_TOKEN}}
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GPR_TOKEN}}
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
