@@ -31,15 +31,28 @@ jobs:
 #    - name: Publish the package to GPR
 #      run: dotnet nuget push ConsoleApp1/bin/Release/*.nupkg
   
-#  publish:
-#    needs: build
-#    runs-on: ubuntu-latest
-#    
-#    steps:
-    - name: Publish linux
-      run: dotnet publish --self-contained true -a linux-x64
+  publish-lnx:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Publish
+        run: dotnet publish --self-contained true
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: hello-world_linux-x64
+          path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/linux-x64/
+          
+  publish-win:
+    needs: build
+    runs-on: windows-latest
+
+    steps:
+    - name: Publish
+      run: dotnet publish --self-contained true
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.3.1
       with:
         name: hello-world_linux-x64
-        path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/linux-x64/
+        path: /home/runner/work/devops-dotnet/devops-dotnet/ConsoleApp1/bin/Debug/net6.0/win-x64/
